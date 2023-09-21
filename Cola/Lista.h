@@ -51,6 +51,8 @@ public:
     void moverNodo(int pos);
 
     void borrarDato(T dato);
+
+    void moverUltimo(int pos);
 };
 
 /**
@@ -397,19 +399,52 @@ void Lista<T>::moverNodo(int pos)
     inicio = aux1;
 }
 
-template <class T> void Lista<T>::borrarDato(T dato){
+template <class T>
+void Lista<T>::borrarDato(T dato)
+{
     Nodo<T> *aux = inicio;
-    int pos=0;
-    while(aux!=nullptr){
-        if(aux->getDato()==dato){
+    int pos = 0;
+    while (aux != nullptr)
+    {
+        if (aux->getDato() == dato)
+        {
             this->remover(pos);
-            aux=inicio;
-            pos=0;
+            aux = inicio;
+            pos = 0;
         }
-        aux=aux->getSiguiente();
+        aux = aux->getSiguiente();
         pos++;
     }
-
 }
 
+template <class T>
+void Lista<T>::moverUltimo(int pos)
+{
+    Nodo<T> *prev = inicio, *actual = inicio, *ultimo = inicio;
+    int posActual = 0;
+
+    while (ultimo->getSiguiente() != nullptr)ultimo = ultimo->getSiguiente();
+        
+    if(pos==0){
+        ultimo->setSiguiente(inicio);
+        inicio=inicio->getSiguiente();
+        actual->setSiguiente(nullptr);
+    }
+
+    while (actual != nullptr && posActual < pos)
+    {
+        actual = actual->getSiguiente();
+        posActual++;
+    }
+
+    posActual = 0;
+    while (actual != nullptr && posActual < pos - 1)
+    {
+        prev = prev->getSiguiente();
+        posActual++;
+    }
+    prev->setSiguiente(actual->getSiguiente());
+    ultimo->setSiguiente(actual);
+    actual->setSiguiente(nullptr);
+}
 #endif LISTA_H

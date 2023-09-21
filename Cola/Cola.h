@@ -226,16 +226,14 @@ template <class T>
 void Cola<T>::encolarNuevoConCola(T dato, T datoNuevo, int n)
 {
     Nodo<T> *nuevoNodo = new Nodo<T>;
-    nuevoNodo->setDato(datoNuevo);
+    nuevoNodo->setDato(datoNuevo); 
     Nodo<T> *aux = tope;
     int cont = 0;
     Cola<T> colaAux;
 
     while (!this->esVacia() && cont != n)
     {
-
-        if (aux->getDato() == dato)
-            cont++;
+        if (aux->getDato() == dato)cont++;
         aux = aux->getSiguiente();
         colaAux.encolar(this->desencolar());
     }
@@ -247,7 +245,6 @@ void Cola<T>::encolarNuevoConCola(T dato, T datoNuevo, int n)
 
         colaAux.encolar(this->desencolar());
     }
-    this->imprimir();
     Nodo<T> *aux2 = colaAux.tope;
     while (!colaAux.esVacia())
     {
