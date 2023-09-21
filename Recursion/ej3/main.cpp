@@ -5,9 +5,7 @@ using namespace std;
     if(n==0){
         return suma;
     }else{
-        if(A[n]%2==0){
-            suma=suma+A[n];
-        }
+        if(A[n]%2==0)suma=suma+A[n];
         return sumaPares(A,suma,n-1);
     }
 }
@@ -27,8 +25,7 @@ int main() {
         if(n%2!=0){
             cout<<"El numero ingresado es impar, no es valido"<<endl;
         }
-    }while(n%2!=0)
-        ;
+    }while(n%2!=0);
     cout<<"La suma es "<<sumaPares(N,suma, n-1);
     return 0;
 }

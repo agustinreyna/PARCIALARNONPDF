@@ -1,7 +1,7 @@
 #ifndef COLA_H_
 #define COLA_H_
 #include "Nodo.h"
-
+#include "Pila.h"
 /**
  * Clase que implementa una Cola generica, ya que puede
  * almacenar cualquier tipo de dato T
@@ -36,6 +36,8 @@ public:
     void encolarNuevoConCola(T dato, T datoNuevo, int n);
 
     void imprimir();
+
+    void intercambiar(Cola<T> &c2);
 };
 
 template <class T>
@@ -252,5 +254,21 @@ void Cola<T>::encolarNuevoConCola(T dato, T datoNuevo, int n)
         this->encolar(colaAux.desencolar());
     }
     return;
+}
+
+template <class T> void Cola<T>::intercambiar(Cola<T> &c2){
+    Pila<T> pila;
+
+    while(!this->esVacia()){
+        pila.push(this->desencolar());
+    }
+
+    while(!c2.esVacia()){
+        this->encolar(c2.desencolar());
+    }
+
+    while(!pila.esVacia()){
+        c2.encolar(pila.pop());
+    }
 }
 #endif // COLA_H_
