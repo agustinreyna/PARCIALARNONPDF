@@ -49,6 +49,8 @@ public:
     void unirlistas(Lista &lista2);
 
     void moverNodo(int pos);
+
+    void borrarDato(T dato);
 };
 
 /**
@@ -393,6 +395,21 @@ void Lista<T>::moverNodo(int pos)
     aux2->setSiguiente(aux1->getSiguiente());
     aux1->setSiguiente(inicio);
     inicio = aux1;
+}
+
+template <class T> void Lista<T>::borrarDato(T dato){
+    Nodo<T> *aux = inicio;
+    int pos=0;
+    while(aux!=nullptr){
+        if(aux->getDato()==dato){
+            this->remover(pos);
+            aux=inicio;
+            pos=0;
+        }
+        aux=aux->getSiguiente();
+        pos++;
+    }
+
 }
 
 #endif LISTA_H
